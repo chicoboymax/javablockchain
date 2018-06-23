@@ -1,14 +1,14 @@
 package com.kapparhopi.blockchain.domain;
 
-import com.kapparhopi.blockchain.StringUtil;
+import com.kapparhopi.blockchain.common.StringUtil;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@Getter
+@Data
 public class Blockchain {
 
     public List<Block> chain;
@@ -17,6 +17,7 @@ public class Blockchain {
     public Blockchain() {
         this.chain = new ArrayList<>();
         this.pendingTransactions = new ArrayList<>();
+        this.createNewBlock((long) 100,"0","0");
     }
 
     private Block createNewBlock(Long nonce, String hash, String previousBlockHash) {
@@ -38,14 +39,27 @@ public class Blockchain {
         return this.getLastBlock().getIndex() + 1;
     }
 
-    public String hashBlock(String previousBlockHash, Long nonce, List<Transaction> currentBlockData) {
+    public String hashBlock(String previousBlockHash, List<Transaction> currentBlockData, Long nonce) {
         String dataAsString = previousBlockHash + nonce.toString() + currentBlockData;
 
         return StringUtil.applySha256(dataAsString);
 
     }
 
-    @Getter
+    public long proofOfWorkk(String previousBlockHash, List<Transaction> currentBlockData) {
+        Long nonce = 0L;
+        String hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
+
+        while (!hash.substring(0, 4).equals("0000")) {
+            nonce++;
+            hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
+        }
+        return nonce;
+
+
+    }
+
+    @Data
     private class Block {
         private int index;
         private LocalDateTime timestamp;

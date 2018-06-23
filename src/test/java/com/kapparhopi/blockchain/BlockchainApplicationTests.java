@@ -22,17 +22,15 @@ public class BlockchainApplicationTests {
     public void createBlockChain() {
         Blockchain blockchain = new Blockchain();
 
-        String previousBlockHash = "sdfd98s7d9s8fg6sd98gd67fg8sf";
+        /*String previousBlockHash = "sdfd98s7d9s8fg6sd98gd67fg8sf";
         List<Transaction> blockList = new ArrayList<>();
         blockList.add(new Transaction(50, "34h53lk5l345", "s6f87g7sfg86sfdg9d"));
         blockList.add(new Transaction(75, "gdfgdfgdfgdgdf", "s6f87g7sfg86sfdg9d"));
-        blockList.add(new Transaction(100, "fgdgdgdgdfgdfrtrtertet", "s6f87g7s6h34i563i4u6fg86sfdg9d"));
-
-        long nonce = 100;
+        blockList.add(new Transaction(100, "fgdgdgdgdfgdfrtrtertet", "s6f87g7s6h34i563i4u6fg86sfdg9d"));*/
 
 
-        String hash = blockchain.hashBlock(previousBlockHash,nonce,blockList);
-        System.out.println(hash);
+
+        System.out.println(blockchain);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.kapparhopi.blockchain;
+package com.kapparhopi.blockchain.common;
 
 import java.security.MessageDigest;
 
